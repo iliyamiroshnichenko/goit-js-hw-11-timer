@@ -15,3 +15,25 @@ body {
 
   /* background-image: url('./images/bg-pattern.png'); */
 }
+
+.timer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.field:not(:last-child) {
+  margin-right: 15px;
+}
+
+.value {
+  font-size: 24px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.buttons button:first-child {
+  margin-right: 15px;
+}
