@@ -1,3 +1,8 @@
+const btnRefs = {
+  start: document.querySelector('button[data-action="Start"]'),
+  stop: document.querySelector('button[data-action="Stop"]'),
+};
+
 class CountdownTimer {
   constructor({ selector, targetDate }) {
     this.selector = selector;
@@ -37,12 +42,16 @@ class CountdownTimer {
     this.intervalId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = this.targetDate - currentTime;
+      if (deltaTime <= 0) {
+        this.updateClockFace(0);
+        return;
+      }
       this.updateClockFace(deltaTime);
     }, 1000);
   }
   stop() {
     clearInterval(this.intervalId);
-    this.intervalId = null;
+    // this.intervalId = null;
     this.isActive = false;
   }
 }
@@ -51,11 +60,6 @@ const timer = new CountdownTimer({
   selector: '#timer-1',
   targetDate: new Date('Jul 17, 2021'),
 });
-
-const btnRefs = {
-  start: document.querySelector('button[data-action="Start"]'),
-  stop: document.querySelector('button[data-action="Stop"]'),
-};
 
 btnRefs.start.addEventListener('click', timer.start.bind(timer));
 btnRefs.stop.addEventListener('click', timer.stop.bind(timer));
